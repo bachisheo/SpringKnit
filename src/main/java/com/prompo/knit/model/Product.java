@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.postgresql.util.PGmoney;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
     @Column
@@ -20,14 +22,11 @@ public class Product {
     @Column
     private Integer count;
     @Column
-    private PGmoney price;
+    private BigDecimal price;
     @Column
     private String description;
     @Column
     private boolean isMadeToOrder;
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Seller owner;
 
     @ManyToOne(optional = false)
     private Seller seller;

@@ -13,7 +13,8 @@ import java.util.List;
  */
 public class Seller {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
     @Column
     private String firstName;
