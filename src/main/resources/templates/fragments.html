@@ -19,7 +19,7 @@
 <header class="p-2 mb-3  border-bottom container-fluid shadow" th:fragment="header">
     <div class="container-fluid col-lg-10 ">
         <div class="navbar navbar-expand-lg navbar-light bg-transparent ">
-            <a class="navbar-brand fs-4 col-2 " href="/index.html">
+            <a class="navbar-brand fs-4 col-2 " th:href="@{empty_template.html}">
                 <img th:src="@{/img/infinity-red.png}" class="mb-1" width="30" height="30" alt="">
                 Нить
             </a>

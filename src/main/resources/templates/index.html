@@ -5,22 +5,17 @@
     <title>Главная страница</title>
 </head>
 
-<div th:replace="fragments :: header">&nbsp;</div>
+<div th:replace="fragments :: header"/>
 <tbody class="d-flex flex-column h-100">
 <main class="container col-md-10" id="content">
     <div class=" row justify-content-center p-e-5 ">
         <!--/*@thymesVar id="prod" type="com.prompo.knit.model.Product"*/-->
         <div class=" col-6 col-md-5 col-lg-4 col-xl-3 card-container" th:each="prod: ${products}">
             <div class="card" th:object="${prod}">
-
                 <a href="index2.html" class="stretched-link"></a>
-
-
                 <div class="image-container ">
-
                     <div class="square-image card-img-top "
                          th:style="'background-image: url(\'/img/' + *{image} + '\');'">
-
                     </div>
                 </div>
                 <div class="card-body">
@@ -35,6 +30,6 @@
         </div>
     </div>
 </main>
-<div th:replace="fragments :: footer"></div>
+<div th:replace="fragments :: footer"/>
 </tbody>
 </html>
