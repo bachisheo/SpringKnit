@@ -32,10 +32,7 @@ public class ProductService implements ICrudService<Product>{
     public void deleteById(Long id){
         delete(find(id).get());
     }
-    @Override
-    public void update(Product model) {
-        productRepository.save(model);
-    }
+
 
     @Override
     public List<Product> getAll() {
