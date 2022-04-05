@@ -85,4 +85,14 @@ public class ProductController {
         vars.addAttribute("products", productService.getAll());
         return "product_monitor";
     }
+
+    /**
+     * Удаление объекта
+     * @return
+     */
+    @GetMapping("/delete/{productid}")
+    public String delete(@PathVariable String productid, Model vars) {
+        productService.deleteById(Long.valueOf(productid));
+        return "redirect:/monitor";
+    }
 }

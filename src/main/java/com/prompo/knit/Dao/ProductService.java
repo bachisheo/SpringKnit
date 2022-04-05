@@ -26,9 +26,12 @@ public class ProductService implements ICrudService<Product>{
 
     @Override
     public void delete(Product model) {
-
+        productRepository.delete(model);
     }
 
+    public void deleteById(Long id){
+        delete(find(id).get());
+    }
     @Override
     public void update(Product model) {
         productRepository.save(model);

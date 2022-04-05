@@ -27,7 +27,7 @@
                     <div class=" row justify-content-center p-2 ">
                         <a th:href="@{'/edit/' + *{id}}" class="col-5 btn btn-outline-primary border-0 m-1">
                             <img class="col-auto" th:src="@{/img/edit.png}" width="25" height="25" alt=""></a>
-                        <a href="#" class="col-5 btn btn-outline-danger border-0 m-1">
+                        <a th:href="@{'/delete/' + *{id}}" class="col-5 btn btn-outline-danger border-0 m-1">
                             <img class="col-auto" th:src="@{/img/delete.png}" width="25" height="25" alt=""></a>
                     </div>
                 </div>
