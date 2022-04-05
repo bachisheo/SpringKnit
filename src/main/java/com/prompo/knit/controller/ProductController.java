@@ -54,7 +54,7 @@ public class ProductController {
     @GetMapping("/edit/{productid}")
     private String editProduct(@PathVariable("productid") Long productid, Model vars){
         vars.addAttribute("product", productService.find(productid).get());
-        return "edit";
+        return "product_edit";
     }
 
     /**
