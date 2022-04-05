@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <div th:replace="fragments :: head-data">&nbsp;</div>
+    <title>Пустая страница</title>
+</head>
+
+<div th:replace="fragments :: header"/>
+<tbody class="d-flex flex-column h-100">
+<main class="container col-md-10" id="content">
+    <!--/*@thymesVar id="product" type="Product"*/-->
+    <form th:action="@{'/edit/' + ${productid}}"
+          th:object="${product}"
+          method="post">
+        <h3>Редактирование товара</h3>
+        <div class="mb-3">
+            <label for="item-name" class="form-label">Название</label>
+            <input type="text" class="form-control" id="item-name" th:field="*{name}">
+        </div>
+        <div class="mb-3">
+            <label for="about-textarea" class="form-label">Описание</label>
+            <textarea class="form-control" id="about-textarea" rows="3" th:field="*{description}"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="choose-foto" class="form-label">Фото</label>
+            <div class="input-group">
+                <input type="file" class="form-control" id="choose-foto" aria-describedby="btn-upload"
+                       aria-label="Upload">
+                <button class="btn btn-outline-secondary" type="button" id="btn-upload">Загрузить</button>
+            </div>
+        </div>
+        <div class="mb-3 col-sm-6">
+            <label for="category-select" class="form-label">Категория</label>
+            <select class="form-select" id="category-select">
+                <option selected>Не указано</option>
+                <option value="1">Одежда</option>
+                <option value="2">Декор</option>
+                <option value="3">Украшения</option>
+            </select>
+        </div>
+        <div class="mb-3 col-sm-6">
+            <label for="item-name" class="form-label">Стоимость</label>
+            <div class="input-group">
+                <input type="number" class="form-control" th:field="*{price}">
+                <span class="input-group-text"> ₽</span>
+            </div>
+        </div>
+        <div class="mb-3 col-sm-6">
+            <label for="count-textarea" class="form-label">В наличии</label>
+            <div class="input-group">
+                <input type="number" class="form-control" id="count-textarea" th:field="*{count}">
+                <span class="input-group-text"> шт.</span>
+            </div>
+        </div>
+        <div class="col col-md-6 form-check mb-4 align-self-end ">
+            <input class="form-check-input" type="checkbox"  id="is-to-order">
+            <label class="form-check-label" for="is-to-order">
+                Изготавливается под заказ
+            </label>
+        </div>
+        <div class="row justify-content-around mb-3">
+            <div class="col-auto">
+                <a href="#" class="btn btn-secondary">Отмена</a>
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+
+</main>
+<div th:replace="fragments :: footer"></div>
+</tbody>
+</html>
