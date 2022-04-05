@@ -5,15 +5,21 @@ import com.prompo.knit.model.Product;
 import com.prompo.knit.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.PostRemove;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 @Controller
 
 public class ProductController {
+    private final String UPLOAD_DIR = "./src/main/resources/static/uploads";
     @Autowired
     ProductService productService;
     @Autowired
@@ -121,4 +127,27 @@ public class ProductController {
         productService.save(product);
         return "redirect:/monitor";
     }
+
+    @PostMapping("/upload")
+    public String uploadFile(@ModelAttribute("file") MultipartFile file) throws IOException {
+
+        // check if file is empty
+        if (file.isEmpty()) {
+           return "redirect:/";
+        }
+
+        // normalize the file path
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        // save the file on the local file system
+        try {
+            Path path = Paths.get(UPLOAD_DIR + fileName);
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // return success response
+        return "redirect:/";
+    }
+
 }
