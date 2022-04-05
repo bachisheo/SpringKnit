@@ -21,7 +21,7 @@ public class ProductService implements ICrudService<Product>{
 
     @Override
     public void save(Product model) {
-
+        productRepository.save(model);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ProductService implements ICrudService<Product>{
 
     @Override
     public void update(Product model) {
-
+        productRepository.save(model);
     }
 
     @Override

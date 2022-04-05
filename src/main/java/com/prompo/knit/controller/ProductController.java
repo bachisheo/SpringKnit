@@ -4,6 +4,7 @@ import com.prompo.knit.Dao.ProductService;
 import com.prompo.knit.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,6 +42,22 @@ public class ProductController {
     private String getProduct(@PathVariable("productid") Long productid, Model vars){
         //todo проверка на случай, если файл не найден
         vars.addAttribute("product", productService.find(productid).get());
+        return "product_details";
+    }
+    @GetMapping("/edit/{productid}")
+    private String editProduct(@PathVariable("productid") Long productid, Model vars){
+        vars.addAttribute("product", productService.find(productid).get());
+        return "edit";
+    }
+    @PostMapping("/edit/{productid}")
+    public String editProduct(@ModelAttribute Product product, Model vars, @PathVariable String productid) {
+        Product original = productService.find(Long.valueOf(productid)).get();
+        original.setName(product.getName());
+        original.setCount(product.getCount());
+        original.setDescription(product.getDescription());
+        original.setPrice(product.getPrice());
+        productService.update(original);
+        vars.addAttribute("product", original);
         return "product_details";
     }
 }
