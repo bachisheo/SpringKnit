@@ -2,17 +2,22 @@ package com.prompo.knit.controller;
 
 import com.prompo.knit.Dao.ProductService;
 import com.prompo.knit.model.Product;
+import com.prompo.knit.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.PostRemove;
+
 @Controller
 
 public class ProductController {
     @Autowired
     ProductService productService;
+    @Autowired
+    SellerRepository sellers;
 
     /**
      * Просмотр списка всех товаров в системе
@@ -71,7 +76,7 @@ public class ProductController {
         original.setCount(product.getCount());
         original.setDescription(product.getDescription());
         original.setPrice(product.getPrice());
-        productService.update(original);
+        productService.save(original);
         vars.addAttribute("product", original);
         return "product_details";
     }
@@ -93,6 +98,27 @@ public class ProductController {
     @GetMapping("/delete/{productid}")
     public String delete(@PathVariable String productid, Model vars) {
         productService.deleteById(Long.valueOf(productid));
+        return "redirect:/monitor";
+    }
+
+    /**
+     * Загрузка страницы для добавления объекта
+     * @return
+     */
+    @GetMapping("/create")
+    public String create(Model vars) {
+        vars.addAttribute("product", new Product());
+        return "product_create";
+    }
+    /**
+     * Добавление объекта в бд
+     * @return
+     */
+    @PostMapping ("/create")
+    public String create(@ModelAttribute Product product, Model vars) {
+        product.setImage("def.png");
+        product.setSeller(sellers.findAll().get(0));
+        productService.save(product);
         return "redirect:/monitor";
     }
 }

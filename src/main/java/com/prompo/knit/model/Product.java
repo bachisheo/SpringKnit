@@ -27,7 +27,7 @@ public class Product {
     @Column
     private boolean isMadeToOrder;
     @Column(nullable = true)
-    private String image;
+    private String image = "def.png";
     @ManyToOne(optional = false)
     private Seller seller;
 

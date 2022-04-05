@@ -9,10 +9,10 @@
 <body class="d-flex flex-column h-100">
 <main class="container col-md-10" id="content">
     <!--/*@thymesVar id="product" type="Product"*/-->
-    <form th:action="@{'/edit/' + ${productid}}"
+    <form th:action="@{'/create'}"
           th:object="${product}"
           method="post">
-        <h3>Редактирование товара</h3>
+        <h3>Добавление товара</h3>
         <div class="mb-3">
             <label for="item-name" class="form-label">Название</label>
             <input type="text" class="form-control" id="item-name" th:field="*{name}">
