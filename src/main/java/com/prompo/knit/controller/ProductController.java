@@ -75,4 +75,14 @@ public class ProductController {
         vars.addAttribute("product", original);
         return "product_details";
     }
+    /**
+     * Получение страницы для управления объявлениями
+     * @param vars
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/monitor")
+    public String monitor(Model vars) {
+        vars.addAttribute("products", productService.getAll());
+        return "product_monitor";
+    }
 }
