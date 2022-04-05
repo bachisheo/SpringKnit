@@ -6,7 +6,7 @@
 </head>
 
 <div th:replace="fragments :: header"/>
-<tbody class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100">
 <main class="container col-md-10" id="content">
     <!--/*@thymesVar id="product" type="Product"*/-->
     <form th:action="@{'/edit/' + ${productid}}"
@@ -70,5 +70,5 @@
 
 </main>
 <div th:replace="fragments :: footer"></div>
-</tbody>
+</body>
 </html>
