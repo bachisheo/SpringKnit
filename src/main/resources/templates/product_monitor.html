@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="ru" class="h-100">
 <head>
     <div th:replace="fragments :: head-data">&nbsp;</div>
     <title>Главная страница</title>
@@ -23,7 +23,7 @@
                 <div class="image-container">
                     <a th:href="@{'/product/' + ${prod.id}}" class="stretched-link"></a>
                     <div class="square-image card-img-top"
-                         th:style="'background-image: url(\'/img/' + *{image} + '\');'">
+                         th:style="'background-image: url(\'' + *{image} + '\');'">
                     </div>
                 </div>
                 <div class="card-body">

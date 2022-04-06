@@ -15,7 +15,7 @@
                 <a th:href="@{'/product/' + *{id}}" class="stretched-link"></a>
                 <div class="image-container ">
                     <div class="square-image card-img-top "
-                         th:style="'background-image: url(\'/img/' + *{image} + '\');'">
+                         th:style="'background-image: url(\'' + *{image} + '\');'">
                     </div>
                 </div>
                 <div class="card-body">

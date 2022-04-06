@@ -30,7 +30,7 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img th:src="@{'/img/' + ${product.image}}" class="rounded mx-auto d-block "
+                            <img th:src="@{${product.image}}" class="rounded mx-auto d-block "
                                  th:alt="*{name}">
                         </div>
                     </div>

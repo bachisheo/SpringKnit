@@ -19,7 +19,7 @@ import java.nio.file.StandardCopyOption;
 @Controller
 
 public class ProductController {
-    private final String UPLOAD_DIR = "./src/main/resources/static/uploads";
+    private final String UPLOAD_DIR = "./src/main/resources/static/uploads/";
     @Autowired
     ProductService productService;
     @Autowired
@@ -76,12 +76,18 @@ public class ProductController {
      * @return
      */
     @PostMapping("/edit/{productid}")
-    public String editProduct(@ModelAttribute Product product, Model vars, @PathVariable String productid) {
+    public String editProduct(@ModelAttribute Product product, @ModelAttribute("file") MultipartFile file, Model vars, @PathVariable String productid) {
+        String photo = uploadFile(file);
+        if(photo == null)
+            photo = "/img/def.png";
+        else photo = "/uploads/" + photo;
         Product original = productService.find(Long.valueOf(productid)).get();
+        original.setImage(photo);
         original.setName(product.getName());
         original.setCount(product.getCount());
         original.setDescription(product.getDescription());
         original.setPrice(product.getPrice());
+        original.setMadeToOrder(product.isMadeToOrder());
         productService.save(original);
         vars.addAttribute("product", original);
         return "product_details";
@@ -128,8 +134,23 @@ public class ProductController {
         return "redirect:/monitor";
     }
 
+    private String uploadFile(MultipartFile file){
+        if (file.isEmpty())
+            return null;
+            // normalize the file path
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            // save the file on the local file system
+            try {
+                Path path = Paths.get(UPLOAD_DIR + fileName);
+                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return fileName;
+
+    }
     @PostMapping("/upload")
-    public String uploadFile(@ModelAttribute("file") MultipartFile file) throws IOException {
+    public String uploadFile1(@ModelAttribute("file") MultipartFile file) throws IOException {
 
         // check if file is empty
         if (file.isEmpty()) {

@@ -11,6 +11,7 @@
     <!--/*@thymesVar id="product" type="Product"*/-->
     <form th:action="@{'/edit/' + ${productid}}"
           th:object="${product}"
+          enctype="multipart/form-data"
           method="post">
         <h3>Редактирование товара</h3>
         <div class="mb-3">
@@ -22,12 +23,11 @@
             <textarea class="form-control" id="about-textarea" rows="3" th:field="*{description}"></textarea>
         </div>
         <div class="mb-3">
-            <label for="choose-foto" class="form-label">Фото</label>
-            <div class="input-group">
-                <input type="file" class="form-control" id="choose-foto" aria-describedby="btn-upload"
-                       aria-label="Upload">
-                <button class="btn btn-outline-secondary" type="button" id="btn-upload">Загрузить</button>
+            <label  class="form-label">Фото</label>
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file" accept="image/png, image/jpeg">
             </div>
+
         </div>
         <div class="mb-3 col-sm-6">
             <label for="category-select" class="form-label">Категория</label>
@@ -52,12 +52,10 @@
                 <span class="input-group-text"> шт.</span>
             </div>
         </div>
-        <div class="col col-md-6 form-check mb-4 align-self-end ">
-            <input class="form-check-input" type="checkbox"  id="is-to-order">
-            <label class="form-check-label" for="is-to-order">
-                Изготавливается под заказ
-            </label>
-        </div>
+             <div class="col col-md-6 form-check mb-4 align-self-end ">
+            <label th:for="isMadeToOrder" th:text="'Single Checkbox Field:'"></label>
+                 <input type="checkbox"  th:field="${product.madeToOrder}" />
+             </div>
         <div class="row justify-content-around mb-3">
             <div class="col-auto">
                 <a th:href="@{'/monitor'}" class="btn btn-secondary">Отмена</a>
