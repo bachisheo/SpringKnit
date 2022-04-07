@@ -59,24 +59,25 @@ public class ProductController {
     /**
      * Получение страницы редактирования продукта
      * @param productid
-     * @param vars
+     * @param model
      * @return
      */
     @GetMapping("/edit/{productid}")
-    private String editProduct(@PathVariable("productid") Long productid, Model vars){
-        vars.addAttribute("product", productService.find(productid).get());
+    private String editProduct(@PathVariable("productid") Long productid, Model model){
+        model.addAttribute("product", productService.find(productid).get());
+        model.addAttribute("isCreate", false);
         return "product_edit";
     }
 
     /**
      * Сохранение результата изменения продукта
      * @param product
-     * @param vars
+     * @param model
      * @param productid
      * @return
      */
     @PostMapping("/edit/{productid}")
-    public String editProduct(@ModelAttribute Product product, @ModelAttribute("file") MultipartFile file, Model vars, @PathVariable String productid) {
+    public String editProduct(@ModelAttribute Product product, @ModelAttribute("file") MultipartFile file, Model model, @PathVariable String productid) {
         String photo = uploadFile(file);
         if(photo == null)
             photo = "/img/def.png";
@@ -89,7 +90,7 @@ public class ProductController {
         original.setPrice(product.getPrice());
         original.setMadeToOrder(product.isMadeToOrder());
         productService.save(original);
-        vars.addAttribute("product", original);
+        model.addAttribute("product", original);
         return "product_details";
     }
     /**
@@ -118,17 +119,23 @@ public class ProductController {
      * @return
      */
     @GetMapping("/create")
-    public String create(Model vars) {
-        vars.addAttribute("product", new Product());
-        return "product_create";
+    public String create(Model model) {
+        model.addAttribute("product", new Product());
+        model.addAttribute("isCreate", true);
+        return "product_edit";
     }
+
     /**
      * Добавление объекта в бд
      * @return
      */
     @PostMapping ("/create")
-    public String create(@ModelAttribute Product product, Model vars) {
-        product.setImage("def.png");
+    public String create(@ModelAttribute Product product,  @ModelAttribute("file") MultipartFile file, Model vars) {
+        String photo = uploadFile(file);
+        if(photo == null)
+            photo = "/img/def.png";
+        else photo = "/uploads/" + photo;
+        product.setImage(photo);
         product.setSeller(sellers.findAll().get(0));
         productService.save(product);
         return "redirect:/monitor";

@@ -9,62 +9,24 @@
 <body class="d-flex flex-column h-100">
 <main class="container col-md-10" id="content">
     <!--/*@thymesVar id="product" type="Product"*/-->
+    <span th:unless="${isCreate}">
     <form th:action="@{'/edit/' + ${productid}}"
           th:object="${product}"
           enctype="multipart/form-data"
           method="post">
-        <h3>Редактирование товара</h3>
-        <div class="mb-3">
-            <label for="item-name" class="form-label">Название</label>
-            <input type="text" class="form-control" id="item-name" th:field="*{name}">
-        </div>
-        <div class="mb-3">
-            <label for="about-textarea" class="form-label">Описание</label>
-            <textarea class="form-control" id="about-textarea" rows="3" th:field="*{description}"></textarea>
-        </div>
-        <div class="mb-3">
-            <label  class="form-label">Фото</label>
-            <div class="form-group">
-                <input type="file" name="file" class="form-control-file" accept="image/png, image/jpeg">
-            </div>
-
-        </div>
-        <div class="mb-3 col-sm-6">
-            <label for="category-select" class="form-label">Категория</label>
-            <select class="form-select" id="category-select">
-                <option selected>Не указано</option>
-                <option value="1">Одежда</option>
-                <option value="2">Декор</option>
-                <option value="3">Украшения</option>
-            </select>
-        </div>
-        <div class="mb-3 col-sm-6">
-            <label for="item-name" class="form-label">Стоимость</label>
-            <div class="input-group">
-                <input type="number" class="form-control" th:field="*{price}">
-                <span class="input-group-text"> ₽</span>
-            </div>
-        </div>
-        <div class="mb-3 col-sm-6">
-            <label for="count-textarea" class="form-label">В наличии</label>
-            <div class="input-group">
-                <input type="number" class="form-control" id="count-textarea" th:field="*{count}">
-                <span class="input-group-text"> шт.</span>
-            </div>
-        </div>
-             <div class="col col-md-6 form-check mb-4 align-self-end ">
-            <label th:for="isMadeToOrder" th:text="'Single Checkbox Field:'"></label>
-                 <input type="checkbox"  th:field="${product.madeToOrder}" />
-             </div>
-        <div class="row justify-content-around mb-3">
-            <div class="col-auto">
-                <a th:href="@{'/monitor'}" class="btn btn-secondary">Отмена</a>
-            </div>
-            <div class="col-auto">
-                <input type="submit" class="btn btn-primary"/>
-            </div>
-        </div>
+            <h3>Редактирование товара</h3>
+        <div th:replace="fragments :: product_input"/>
     </form>
+    </span>
+    <span th:if="${isCreate}">
+    <form th:action="@{'/create'}"
+          th:object="${product}"
+          enctype="multipart/form-data"
+          method="post">
+            <h3>Добавление товара</h3>
+        <div th:replace="fragments :: product_input"/>
+    </form>
+    </span>
 
 </main>
 <div th:replace="fragments :: footer"></div>

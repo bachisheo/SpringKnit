@@ -73,6 +73,48 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 </footer>
+<product_input>
+    <div class="mb-3">
+        <label for="item-name" class="form-label">Название</label>
+        <input type="text" class="form-control" id="item-name" th:field="*{name}">
+    </div>
+    <div class="mb-3">
+        <label for="about-textarea" class="form-label">Описание</label>
+        <textarea class="form-control" id="about-textarea" rows="3" th:field="*{description}"></textarea>
+    </div>
+    <div class="mb-3">
+        <label  class="form-label">Фото</label>
+        <div class="form-group">
+            <input type="file" name="file" class="form-control-file" accept="image/png, image/jpeg">
+        </div>
 
+    </div>
+    <div class="mb-3 col-sm-6">
+        <label for="item-name" class="form-label">Стоимость</label>
+        <div class="input-group">
+            <input type="number" class="form-control" th:field="*{price}">
+            <span class="input-group-text"> ₽</span>
+        </div>
+    </div>
+    <div class="mb-3 col-sm-6">
+        <label for="count-textarea" class="form-label">В наличии</label>
+        <div class="input-group">
+            <input type="number" class="form-control" id="count-textarea" th:field="*{count}">
+            <span class="input-group-text"> шт.</span>
+        </div>
+    </div>
+    <div class="col col-md-6 form-check mb-4 align-self-end ">
+        <input type="checkbox"  th:field="*{madeToOrder}" />
+        <label th:for="isMadeToOrder" th:text="'Изготавливается под заказ'"></label>
+    </div>
+    <div class="row justify-content-around mb-3">
+        <div class="col-auto">
+            <a th:href="@{'/monitor'}" class="btn btn-secondary">Отмена</a>
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary"/>
+        </div>
+    </div>
+</product_input>
 </body>
 </html>
