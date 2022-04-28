@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class ProductService implements ICrudService<Product>{
+    /** Инъекция зависимости от репозитория таблицы */
     @Autowired
     ProductRepository productRepository;
 
@@ -33,9 +34,14 @@ public class ProductService implements ICrudService<Product>{
         delete(find(id).get());
     }
 
-
     @Override
     public List<Product> getAll() {
         return new ArrayList<>(productRepository.findAll());
+    }
+
+    public List<Product> findProductByName(String productName) {
+
+        List<Product> result = productRepository.findProductsByName(productName);
+        return result;
     }
 }
