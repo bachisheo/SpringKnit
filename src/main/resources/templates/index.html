@@ -8,34 +8,8 @@
 <div th:replace="fragments :: header"/>
 <body class="d-flex flex-column h-100">
 <main class="container col-md-10" id="content">
-    <div class="container" style="min-height: 500px">
-
-        <div class="starter-template">
-            <h1>Spring Boot AJAX Example</h1>
-
-            <div id="feedback"></div>
-
-            <form class="form-horizontal" id="search-form">
-                <div class="form-group form-group-lg">
-                    <label class="col-sm-2 control-label">Username</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="productName"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" id="bth-search"
-                                class="btn btn-primary btn-lg">Search
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-        </div>
-
-    </div>
-    <div class=" row justify-content-center p-e-5 ">
+  
+    <div class=" row justify-content-center p-e-5" id="products_container">
         <!--/*@thymesVar id="prod" type="com.prompo.knit.model.Product"*/-->
         <div class=" col-6 col-md-5 col-lg-4 col-xl-3 card-container" th:each="prod: ${products}">
             <div class="card" th:object="${prod}">

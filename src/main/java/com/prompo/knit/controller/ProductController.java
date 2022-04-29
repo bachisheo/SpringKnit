@@ -1,20 +1,27 @@
 package com.prompo.knit.controller;
 
 import com.prompo.knit.Dao.ProductService;
+import com.prompo.knit.model.AjaxResponseBody;
 import com.prompo.knit.model.Product;
+import com.prompo.knit.model.SearchCriteria;
 import com.prompo.knit.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 
@@ -24,6 +31,7 @@ public class ProductController {
     ProductService productService;
     @Autowired
     SellerRepository sellers;
+
 
     /**
      * Просмотр списка всех товаров в системе

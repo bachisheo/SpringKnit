@@ -45,13 +45,15 @@
                 </ul>
 
                 <div class="container me-auto border-1">
+                    <form id="search-form">
                     <div class="input-group">
                         <input type="search" class="form-control" placeholder="Все категории" aria-label="Search"
-                               aria-describedby="button-search">
+                               aria-describedby="button-search" id="productName">
                         <a th:href="@{'/api/search'}" class=" btn btn-outline-primary" id="button-search"><img th:src="@{/img/search.png}"
                                                                                              width="25" height="25"
                                                                                              alt=""></a>
                     </div>
+                    </form>
                 </div>
                 <div class="nav col-md-auto mb-2 justify-content-center mb-md-0">
                     <a class="nav-link col-12 col-lg-auto text-center" th:href="@{'/monitor'}">Мой магазгин</a>

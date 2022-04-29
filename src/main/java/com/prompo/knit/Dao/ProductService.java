@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService implements ICrudService<Product>{
@@ -43,5 +44,12 @@ public class ProductService implements ICrudService<Product>{
 
         List<Product> result = productRepository.findProductsByName(productName);
         return result;
+    }
+    public List<Product> searchProducts(String productName) {
+
+        List<Product> result = productRepository.findAll();
+        return result.stream()
+                .filter(x -> x.getName().contains(productName))
+                .collect(Collectors.toList());
     }
 }
