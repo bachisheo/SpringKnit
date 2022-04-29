@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <div th:replace="fragments :: head-data">&nbsp;</div>
+    <title>Оформить заказ</title>
+</head>
+
+<div th:replace="fragments :: header"/>
+<body class="d-flex flex-column h-100">
+<main class="container col-md-10" id="content">
+    <!--/*@thymesVar id="product" type="Product"*/-->
+        <div class="d-flex flex-column justify-content-center mx-auto col-5">
+            <h3>Оформление заказа</h3>
+            <div id="order-product">
+                <h4>Товар</h4>
+                <!--/*@thymesVar id="prod" type="com.prompo.knit.model.Product"*/-->
+                <div class=" col-6 mx-auto card-container" >
+                    <div class="card-edit" th:object="${product}">
+                        <div class="image-container">
+                            <a th:href="@{'/product/' + ${product.id}}" class="stretched-link"></a>
+                            <div class="square-image card-img-top"
+                                 th:style="'background-image: url(\'' + *{image} + '\');'">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-subtitle" th:text="*{name}"></p>
+                            <h5 class="col card-title" th:text="*{price} + ' ₽'"></h5>
+                            <hr style="margin-bottom:0;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 ">
+                    <label for="count-textarea" class="form-label">Товаров в заказе</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="count-textarea" >
+                        <span class="input-group-text"> шт.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 ">
+                <label for="item-name" class="form-label">ФИО заказчика</label>
+                <input type="text" class="form-control" id="item-name" >
+            </div>
+            <div class="mb-3 ">
+                <label for="phone" class="form-label">Номер телефона</label>
+                <input type="number" class="form-control" id="phone" >
+            </div>
+            <div class="mb-3 ">
+                <label for="emaik" class="form-label">Электронная почта</label>
+                <input type="email" class="form-control" id="emaik" >
+            </div>
+
+
+
+            <div class="row justify-content-around mb-3">
+                <div class="col-auto">
+                    <a th:href="@{'/monitor'}" class="btn btn-secondary">Отмена</a>
+                </div>
+                <div class="col-auto">
+                    <input type="submit" class="btn btn-primary"/>
+                </div>
+            </div>
+        </div>
+</main>
+<div th:replace="fragments :: footer"></div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="en" class="h-100" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head >
     <div th:fragment="head-data">
@@ -29,7 +29,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-nav collapse navbar-collapse align-content-end ms-auto" id="userInfo">
-                <ul class="nav">
+                <!--ul class="nav">
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">Категории</a>
@@ -42,23 +42,25 @@
                             <li><a class="dropdown-item" href="#">Декор</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul-->
 
                 <div class="container me-auto border-1">
                     <form id="search-form">
                     <div class="input-group">
                         <input type="search" class="form-control" placeholder="Все категории" aria-label="Search"
                                aria-describedby="button-search" id="productName">
-                        <a th:href="@{'/api/search'}" class=" btn btn-outline-primary" id="button-search"><img th:src="@{/img/search.png}"
-                                                                                             width="25" height="25"
-                                                                                             alt=""></a>
+                        <a th:href="@{'/api/search'}" class=" btn btn-outline-primary" id="button-search"><img
+                                th:src="@{/img/search.png}" width="25" height="25" alt=""></a>
                     </div>
                     </form>
                 </div>
                 <div class="nav col-md-auto mb-2 justify-content-center mb-md-0">
-                    <a class="nav-link col-12 col-lg-auto text-center" th:href="@{'/monitor'}">Мой магазгин</a>
-                    <a class="nav-link col-12 col-lg-auto text-center" href="#">Покупки</a>
-                    <a class="nav-link col-12 col-lg-auto text-center" href="#">Войти</a>
+                    <a sec:authorize="isAuthenticated()" class="nav-link col-12 col-lg-auto text-center" th:href="@{'/monitor'}">Мой магазин</a>
+                    <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+                    <input  type="submit" class="nav-link col-12 col-lg-auto text-center" value="Выйти" ></input>
+                    </form>
+                    <a  sec:authorize="!isAuthenticated()"  class="nav-link col-12 col-lg-auto text-center" th:href="@{'/login'}">Войти</a>
+
                 </div>
             </div>
         </div>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <div th:replace="fragments :: head-data">&nbsp;</div>
+    <title>Авторизация</title>
+</head>
+
+<div th:replace="fragments :: header"></div>
+<body class="d-flex flex-column h-100" >
+<main class="container col-3" id="content">
+    <div class="card-edit col-10 mb-2" style="padding: 15px;">
+    <div  th:if="${param.error}">
+        <p style="color:red;"> Invalid username and password.</p>
+
+</div>
+<div  class=" col-1" th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <div class="mb-3 ">
+        <label for="item-name" class="form-label">Логин</label>
+        <input type="text" class="form-control" id="item-name" name="username" >
+    </div>
+    <div class="mb-3 ">
+        <label for="item-pass" class="form-label">Пароль</label>
+        <input type="text" class="form-control" id="item-pass" name="password" >
+    </div>
+    <div class="row justify-content-around mb-3">
+        <div class="col-auto">
+            <a href="#" class="btn btn-secondary">Регистрация</a>
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary" value="Войти"/>
+        </div>
+    </div>
+</form>
+    </div>
+</main>
+</body>
+</html>
+<div th:replace="fragments :: footer">&nbsp;</div>

@@ -7,26 +7,24 @@
 $(document).ready(function () {
 
     $("#search-form").submit(function (event) {
-
         //stop submit the form, we will post it manually.
         event.preventDefault();
         fire_ajax_submit();
     });
-    $("#")
+
 });
 
 function deleteProduct(id, oldName) {
-    var oname = oldName;
     $.ajax({
         type: "GET",
         url: "/delete/" + id,
         success: function (data) {
             $('#products_monitor_container').html(data);
-            alert("Товар" + oname + " успешно удален!");
-            console.log("SUCCESS : ", data);
 
+            console.log("SUCCESS : ", data);
+            show("Товар " + oldName + " успешно удален!");
         },
-    error: function (e) {alert("Товар " + oname + " не удалось удалить!");}});
+    error: function (e) {alert("Товар " + oldName + " не удалось удалить!");}});
 
 };
 function fire_ajax_submit() {
