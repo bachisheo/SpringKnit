@@ -10,15 +10,25 @@ $(document).ready(function () {
 
         //stop submit the form, we will post it manually.
         event.preventDefault();
-
         fire_ajax_submit();
-
     });
-
+    $("#")
 });
-function aj_test(){
 
-}
+function deleteProduct(id, oldName) {
+    var oname = oldName;
+    $.ajax({
+        type: "GET",
+        url: "/delete/" + id,
+        success: function (data) {
+            $('#products_monitor_container').html(data);
+            alert("Товар" + oname + " успешно удален!");
+            console.log("SUCCESS : ", data);
+
+        },
+    error: function (e) {alert("Товар " + oname + " не удалось удалить!");}});
+
+};
 function fire_ajax_submit() {
         $("#btn-search").prop("disabled", true);
     $.ajax({

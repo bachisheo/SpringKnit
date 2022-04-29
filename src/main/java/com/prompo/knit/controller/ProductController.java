@@ -1,27 +1,21 @@
 package com.prompo.knit.controller;
 
 import com.prompo.knit.Dao.ProductService;
-import com.prompo.knit.model.AjaxResponseBody;
 import com.prompo.knit.model.Product;
-import com.prompo.knit.model.SearchCriteria;
 import com.prompo.knit.repository.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 
@@ -35,7 +29,6 @@ public class ProductController {
 
     /**
      * Просмотр списка всех товаров в системе
-     * @param vars
      * @return
      */
     @RequestMapping(method = RequestMethod.GET, value = "/")
@@ -114,12 +107,15 @@ public class ProductController {
 
     /**
      * Удаление объекта
-     * @return
      */
     @GetMapping("/delete/{productid}")
-    public String delete(@PathVariable String productid, Model vars) {
-        productService.deleteById(Long.valueOf(productid));
-        return "redirect:/monitor";
+    ModelAndView delete(@PathVariable Long productid) {
+        ModelAndView mav = new ModelAndView("product_monitor_list");
+        Product oldProduct = productService.find(productid).get();
+        mav.getModel().put("oldName", oldProduct.getName());
+        productService.delete(oldProduct);
+        mav.getModel().put("products",productService.getAll());
+        return mav;
     }
 
     /**

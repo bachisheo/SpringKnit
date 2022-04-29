@@ -23,8 +23,8 @@ public class SearchController {
 
     /**
      * Поиск продукта по заданному имени
-     * @param productName
-     * @return
+     * @param productName содержимое строки запроса
+     * @return  шаблон, который надо рендерить и его наполнение
      */
     @PostMapping("/api/search")
     @ResponseBody
@@ -41,7 +41,6 @@ public class SearchController {
         }
         result.setResult(products);
         mav.addObject("products", products);
-        /* Возвращаем имя шаблона, который надо рендерить */
         return mav;
     }
 }

@@ -67,16 +67,21 @@
                             <span th:unless="${product.isMadeToOrder}">
                                 <span th:unless="${product.count}" th:text="'Нет в наличии.'"></span>
                             </span>
-
-
                         </p>
                         <a href="#" class="btn btn-primary">Оформить заказ</a>
                     </div>
                 </div>
             </div>
+            <div class="mt-5">
+                <h4>Похожие товары</h4>
+            </div>
+
         </div>
     </div>
+    <div id="similar_products">
+    </div>
 </main>
+
 <div th:replace="fragments :: footer"/>
 </body>
 </html>
