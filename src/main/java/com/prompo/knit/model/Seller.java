@@ -20,6 +20,10 @@ public class Seller {
     private String firstName;
     @Column
     private String lastName;
+    @Column
+    private String password;
+    @Column
+    private String login;
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "seller")
     List<Product> productList;
 

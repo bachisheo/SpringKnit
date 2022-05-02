@@ -13,8 +13,9 @@
         <p style="color:red;"> Invalid username and password.</p>
 
 </div>
-<div  class=" col-1" th:if="${param.logout}">
-    You have been logged out.
+<div th:if="${param.logout}">
+    <p style="color:gray;">  You have been logged out.</p>
+
 </div>
 <form th:action="@{/login}" method="post">
     <div class="mb-3 ">

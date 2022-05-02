@@ -7,7 +7,7 @@
 
 <div th:replace="fragments :: header"/>
 <body class="d-flex flex-column h-100">
-<main class="container col-md-10" id="content">
+<main class="container col-md-8"  id="content">
   
     <div class=" row justify-content-center p-e-5" id="products_container">
         <!--/*@thymesVar id="prod" type="com.prompo.knit.model.Product"*/-->
@@ -20,10 +20,14 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="card-subtitle" th:text="*{name}"/>
                     <div class="row justify-content-between ">
+                        <div class="col-8">
+                    <p class="card-subtitle" th:text="*{name}"/>
+
                         <h5 class="col card-title" th:text="*{price} + ' ₽'"/>
-                        <img class="col-auto" th:src="@{/img/heart.png}" width="25" height="25" alt="">
+                        </div>
+                        <img class="col-auto" th:src="@{/img/add-to-cart.png}"
+                             style="padding: 3px; margin-right: 15px;" width="40" height="40" alt="">
                     </div>
                 </div>
             </div>

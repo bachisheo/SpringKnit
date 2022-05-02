@@ -137,6 +137,16 @@
 .nav-link{
     color: #1D2A49 !important;
 }
+.gray-nav-link:hover, .gray-nav-link:focus {
+    color: gray;
+}
+ .gray-nav-link {
+    color: gray ;
+     display: block;
+     padding: 0.5rem 1rem;
+     text-decoration: none;
+     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
 .form-control {
     border-color: rgba(68, 100, 173, 0.5);
 

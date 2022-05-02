@@ -26,6 +26,12 @@ public class ProductController {
     @Autowired
     SellerRepository sellers;
 
+    @GetMapping("/bye/{productid}")
+    private ModelAndView byeProduct(@PathVariable("productid") Long productid){
+        var mav = new ModelAndView("order");
+        mav.getModel().put("product", productService.find(productid).get());
+        return mav;
+    }
 
     /**
      * Просмотр списка всех товаров в системе
@@ -111,9 +117,6 @@ public class ProductController {
     @GetMapping("/delete/{productid}")
     ModelAndView delete(@PathVariable Long productid) {
         ModelAndView mav = new ModelAndView("product_monitor_list");
-        Product oldProduct = productService.find(productid).get();
-        mav.getModel().put("oldName", oldProduct.getName());
-        productService.delete(oldProduct);
         mav.getModel().put("products",productService.getAll());
         return mav;
     }
