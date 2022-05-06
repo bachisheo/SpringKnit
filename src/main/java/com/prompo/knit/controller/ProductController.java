@@ -116,6 +116,7 @@ public class ProductController {
      */
     @GetMapping("/delete/{productid}")
     ModelAndView delete(@PathVariable Long productid) {
+        productService.deleteById(productid);
         ModelAndView mav = new ModelAndView("product_monitor_list");
         mav.getModel().put("products",productService.getAll());
         return mav;

@@ -2,19 +2,20 @@
 <html lang="en" class="h-100">
 <head>
     <div th:replace="fragments :: head-data">&nbsp;</div>
-    <title>Пустая страница</title>
+
 </head>
 
 <div th:replace="fragments :: header"/>
 <body class="d-flex flex-column h-100">
-<main class="container col-md-10" id="content">
+<main class="container col-md-6" id="content">
     <!--/*@thymesVar id="product" type="Product"*/-->
     <span th:unless="${isCreate}">
     <form th:action="@{'/edit/' + ${productid}}"
           th:object="${product}"
           enctype="multipart/form-data"
           method="post">
-            <h3>Редактирование товара</h3>
+            <h3>Изменить объявление</h3>
+            <title>Изменить объявление</title>
         <div th:replace="fragments :: product_input"/>
     </form>
     </span>
@@ -23,7 +24,8 @@
           th:object="${product}"
           enctype="multipart/form-data"
           method="post">
-            <h3>Добавление товара</h3>
+            <h3>Разметстить объявление</h3>
+        <title>Разметстить объявление</title>
         <div th:replace="fragments :: product_input"/>
     </form>
     </span>

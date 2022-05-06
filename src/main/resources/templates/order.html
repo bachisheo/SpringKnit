@@ -43,22 +43,16 @@
                 <input type="text" class="form-control" id="item-name" >
             </div>
             <div class="mb-3 ">
-                <label for="phone" class="form-label">Номер телефона</label>
-                <input type="number" class="form-control" id="phone" >
-            </div>
-            <div class="mb-3 ">
                 <label for="emaik" class="form-label">Электронная почта</label>
                 <input type="email" class="form-control" id="emaik" >
             </div>
 
-
-
             <div class="row justify-content-around mb-3">
                 <div class="col-auto">
-                    <a th:href="@{'/monitor'}" class="btn btn-secondary">Отмена</a>
+                    <a th:href="@{'/index'}" class="btn btn-secondary">Отмена</a>
                 </div>
                 <div class="col-auto">
-                    <input type="submit" class="btn btn-primary"/>
+                    <a th:href="@{'/bought'}" class="btn btn-primary">Оформить</a>
                 </div>
             </div>
         </div>

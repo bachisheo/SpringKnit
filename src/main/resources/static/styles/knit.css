@@ -136,15 +136,22 @@
 
 .nav-link{
     color: #1D2A49 !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    padding-bottom: 0% !important;
+    padding-top: 0.1rem !important;
 }
 .gray-nav-link:hover, .gray-nav-link:focus {
-    color: gray;
+    color: darkgray;
 }
- .gray-nav-link {
+.gray-nav-link {
     color: gray ;
      display: block;
-     padding: 0.5rem 1rem;
-     text-decoration: none;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.1rem;
+    text-decoration: none;
+    text-align: center;
      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 .form-control {

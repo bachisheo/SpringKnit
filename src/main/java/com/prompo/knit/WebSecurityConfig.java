@@ -24,11 +24,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/map").permitAll()
+                .antMatchers("/bought").permitAll()
                 .antMatchers("/img/*").permitAll()
                 .antMatchers("/js/*").permitAll()
                 .antMatchers("/styles/*").permitAll()
                 .antMatchers("/uploads/*").permitAll()
+                .antMatchers("/product/*").permitAll()
+                .antMatchers("/bye/*").permitAll()
+                .antMatchers("/search/*").permitAll()
+                .antMatchers("/login/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

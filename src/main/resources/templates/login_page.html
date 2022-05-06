@@ -7,15 +7,16 @@
 
 <div th:replace="fragments :: header"></div>
 <body class="d-flex flex-column h-100" >
-<main class="container col-3" id="content">
-    <div class="card-edit col-10 mb-2" style="padding: 15px;">
+<main class="container col-md-3" id="content">
+    <div class="card-edit col-md-10 mb-2" style="padding: 15px;">
     <div  th:if="${param.error}">
-        <p style="color:red;"> Invalid username and password.</p>
-
+        <p style="color:red;"> Неверный логин или пароль.</p>
 </div>
 <div th:if="${param.logout}">
-    <p style="color:gray;">  You have been logged out.</p>
-
+    <p style="color:gray;"> Вы вышли из системы.</p>
+</div>
+<div th:if="${mypar}">
+    <p style="color:gray;text-align: center;" >У вас нет доступа к данному функционалу.<br> Пожалуйста, авторизуйтесь в системе.</p>
 </div>
 <form th:action="@{/login}" method="post">
     <div class="mb-3 ">
@@ -24,12 +25,10 @@
     </div>
     <div class="mb-3 ">
         <label for="item-pass" class="form-label">Пароль</label>
-        <input type="text" class="form-control" id="item-pass" name="password" >
+        <input type="password" class="form-control" id="item-pass" name="password" >
     </div>
     <div class="row justify-content-around mb-3">
-        <div class="col-auto">
-            <a href="#" class="btn btn-secondary">Регистрация</a>
-        </div>
+
         <div class="col-auto">
             <input type="submit" class="btn btn-primary" value="Войти"/>
         </div>

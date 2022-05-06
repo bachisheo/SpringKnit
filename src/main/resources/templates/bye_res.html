@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <div th:replace="fragments :: head-data">&nbsp;</div>
+    <link rel="shortcut icon" th:href="@{/inf1.ico}" type="image/x-icon">
+    <title>Главная страница</title>
+</head>
+
+<div th:replace="fragments :: header"/>
+<body class="d-flex flex-column h-100">
+<main class="container col-md-8"  id="content">
+
+    <div class=" row justify-content-center p-e-5" id="products_container">
+        <div class=" col-6 col-md-5 col-lg-4 col-xl-3 card-container" style="text-align: center;" >
+            <h5 >Заказ оформлен и отправлен продавцу! </h5>
+            <h5>Он свяжется с вами в ближайшее время.</h5>
+            <a th:href="@{'/'}">Продолжить покупки.</a>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments :: footer"/>
+</body>
+</html>
+
+
